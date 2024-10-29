@@ -1,17 +1,32 @@
 setTimeout(() => {
-    window.location.href = '/index.html';
-}, 4000);
+    window.location.href = '/pages/index.html';
+}, 3000);
 
-// Function to be called when the button is clicked
-function myFunction() {
+// Function to be called when the create button is clicked
+function gocreatebtn() {
     // alert("Button was clicked!");
-    window.location = 'splash.html';
+    window.location = '/pages/create.html';
 }
 
 // Select the button using its ID
 const button = document.getElementById('createbtn');
 
 // Add an event listener to the button
-button.addEventListener('click', myFunction);
+button.addEventListener('click', gocreatebtn);
+
+
+// Function to be called when the view button is clicked
+function goviewbtn() {
+    // alert("Button was clicked!");
+    window.location = '/pages/allcontact.html';
+}
+
+// Select the button using its ID
+const viewbtn = document.getElementById('allbtn');
+
+// Add an event listener to the button
+viewbtn.addEventListener('click', goviewbtn);
+
+
 
 
