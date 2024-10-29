@@ -1,13 +1,7 @@
-*{
+* {
     margin: 0px;
     box-sizing: border-box;
     padding: 0px;
     background-color: rgb(127 157 255);
+    font-size: 37px;
 }
-
-#displaycontacts {
-
-    background-color: lightskyblue;
-    color: rgb(255, 47, 82);
-}
-
