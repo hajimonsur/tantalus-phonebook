@@ -1,12 +1,12 @@
+
+#main {
+    background-color: lightskyblue;
+    color: rgb(248, 230, 130)
+}
+
 #displaycontacts {
 
-    background-color: red;
+    background-color: lightskyblue;
     color: rgb(255, 47, 82);
 }
 
-;
-
-#main p {
-    color: greenyellow;
-    background-color: blueviolet;
-};
