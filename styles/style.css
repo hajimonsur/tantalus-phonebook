@@ -1,5 +1,6 @@
 #splash {
-  background-color: rgb(127, 157, 255);
+  background: linear-gradient(to right,#14A5DE,#898CFC);
+
 }
 
 #splashlogo {
@@ -63,8 +64,17 @@ justify-content: center;
 } */
 
 body {
-  background-color: rgb(127, 157, 255);
+  background: linear-gradient(to right,#14A5DE,#898CFC);
 }
+
+
+#indexheader {
+  
+  color: #38005A;
+
+}
+
+
 
 
  /* media query */
@@ -90,7 +100,6 @@ body {
   }
 
 }
-
 
 
 

@@ -6,6 +6,8 @@ const  contactElem = document.getElementById("contactForm")
 
 
 // create local storage
+
+
 const contacts = JSON.parse(localStorage.getItem("contact")) || [];
 
 function createContact(e) {
@@ -13,8 +15,8 @@ function createContact(e) {
     e.preventDefault();
 
     const fullName = contactElem.names.value.trim();
-    const phone = contactElem.email.value.trim();
-    const email = contactElem.number.value;
+    const email = contactElem.email.value.trim();
+    const phone = contactElem.number.value;
 
 
     if (fullName && phone && email) {
@@ -60,6 +62,11 @@ const viewallbtn = document.getElementById('viewall');
 
 // Add an event listener to the button
 viewallbtn.addEventListener('click', goviewall);
+
+
+
+
+
 
 
 
