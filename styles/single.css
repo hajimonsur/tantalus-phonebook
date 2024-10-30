@@ -24,31 +24,3 @@
     border-radius: 30px;
     text-align: center;
 }
-
-
- /* media query */
-
- @media only screen and (max-width: 700px) {
- 
-  /* splash meida query */
-  #splashlogo {
-    text-align: center;
-    margin-top: 210px;
-    margin-left: 30px;
-    }
-
-
-    /* index page media query */
-      .indexbtn {
-        
-    width: 150px;
-  } 
-
-  #buttons {
-    margin-top: 90px;
-  }
-
-}
-
-
-
