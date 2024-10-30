@@ -1,7 +1,26 @@
 * {
     margin: 0px;
     box-sizing: border-box;
-    padding: 0px;
+    /* padding: 0px; */
     background-color: rgb(127 157 255);
     font-size: 37px;
+    padding-left: 4px;
+    padding-top: 3px;
+}
+
+
+#singleContact {
+    display: flex;
+    justify-content: center;
+    padding-top: 70px;
+
+}
+
+
+#singleDisplay {
+    border: 5px solid palevioletred;
+    padding: 200px;
+    margin: 10px;
+    border-radius: 30px;
+    text-align: center;
 }
