@@ -1,62 +1,107 @@
 
 
-// funtion to display all contacts inside the local storage in allcontact.html
+// // funtion to display all contacts inside the local storage in allcontact.html
 
-const retrieve = JSON.parse(localStorage.getItem('contact'));
-function displayContact() {
+// const retrieve = JSON.parse(localStorage.getItem('contact'));
+// function displayContact() {
 
-    if (retrieve != null) {
-        for (let i = 0; i < retrieve.length; i++) {
+//     if (retrieve != null) {
+//         for (let i = 0; i < retrieve.length; i++) {
             
-            const contactsListElem = document.getElementById("contactsList");
+//             const contactsListElem = document.getElementById("contactsList");
            
-            const li = document.createElement("li");
-            li.innerHTML = ` <p> <b> Name:</b> ${retrieve[i].fullName}</p> 
-            <p> <b> Phone:</b> ${retrieve[i].phone}</p> 
-            <p> <b> Email:</b> ${retrieve[i].email}</p>
-            
-             <button class="viewbtn" data-index="${i}">View Contact</button>
-               
-            <button>Edit</button>
-            <hr>`;
+//             const li = document.createElement("li");
+//             li.innerHTML = ` <p> <b> Name:</b> ${retrieve[i].fullName}</p> 
+//             <p> <b> Phone:</b> ${retrieve[i].phone}</p> 
+//             <p> <b> Email:</b> ${retrieve[i].email}</p>
+//              <button class="singlebtn">View Contact</button>
+//             <button class="editBtn">Edit</button>
+//             <hr>`;
          
             
-            contactsListElem.appendChild(li);
+//             contactsListElem.appendChild(li);
          
-        }
+//         }
        
-    }
+//     }
     
-}
+// }
 
-document.addEventListener("DOMContentLoaded", displayContact());
-
-
+// document.addEventListener("DOMContentLoaded", displayContact());
 
 
 
+// // Function to be called when the single button is clicked
+// function goeditbtn() {
+//     // alert("Button was clicked!");
+//     window.location = '/pages/edit.html';
+// }
 
-// Function to handle viewing a contact
-function viewContact(event) {
-    const index = event.target.getAttribute('data-index');
-    localStorage.setItem('selectedContactIndex', index); // Save the selected contact index
-    window.location = '/pages/singlepage.html'; // Navigate to the single contact page
-}
+// // Select the button using its class name
 
-// Add event listeners to each "View Contact" button after DOM content is loaded
+// const editbtn = document.getElementsByClassName('editBtn');
+
+// // Add an event listener to the buttons
+
+// for (let i = 0; i < editbtn.length; i++) {
+//     editbtn[i].addEventListener('click', goeditbtn);
+// };
+// // edit contact button function
+
+// function editContact(index) {
+//     // Get the index of the clicked contact
+//     const contactIndex = index;
+
+//     // Get the contact data from local storage
+//     const contacts = JSON.parse(localStorage.getItem('contact'));
+
+//     // Open the edit.html page with the contact data
+//     window.location = `/pages/edit.html?index=${contactIndex}`;
+// }
+// editContact(index);
+
+// // Select the button using its class name
+
+// const singlebtn = document.getElementsByClassName('singlebtn');
+
 document.addEventListener("DOMContentLoaded", () => {
-    const viewButtons = document.querySelectorAll('.viewbtn');
-    viewButtons.forEach(button => {
-        button.addEventListener('click', viewContact);
-    });
+    const contactsListElem = document.getElementById("contactsList");
+    const contacts = JSON.parse(localStorage.getItem('contact')) || [];
+
+    function displayContacts() {
+        contactsListElem.innerHTML = ''; // Clear existing contacts
+
+        contacts.forEach((contact, index) => {
+            const li = document.createElement("li");
+            li.innerHTML = `
+                <p><b>Name:</b> ${contact.fullName}</p>
+                <p><b>Phone:</b> ${contact.phone}</p>
+                <p><b>Email:</b> ${contact.email}</p>
+                <button class="viewBtn" data-index="${index}">View Contact</button>
+                <button class="editBtn" data-index="${index}">Edit</button>
+                <hr>
+            `;
+            contactsListElem.appendChild(li);
+        });
+
+        // Add event listeners for view buttons
+        document.querySelectorAll('.viewBtn').forEach(button => {
+            button.addEventListener('click', (e) => {
+                const index = e.target.getAttribute("data-index");
+                // Redirect to view page with contact index
+                window.location.href = `/pages/view.html?index=${index}`;
+            });
+        });
+
+        // Add event listeners for edit buttons
+        document.querySelectorAll('.editBtn').forEach(button => {
+            button.addEventListener('click', (e) => {
+                const index = e.target.getAttribute("data-index");
+                // Redirect to edit page with contact index
+                window.location.href = `/pages/edit.html?index=${index}`;
+            });
+        });
+    }
+
+    displayContacts(); // Call the function to display contacts
 });
-
-
-
-
-
-
-
-
-
-
