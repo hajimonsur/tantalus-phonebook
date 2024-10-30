@@ -40,12 +40,12 @@ function createContact(e) {
         contactElem.number.value = "";
 
     } else {
-        alert("please enter valid details")
+        alert("please enter valid details");
     }
-
+    // displayContacts();
 }
 
-contactElem.addEventListener("submit", createContact)
+contactElem.addEventListener("submit", createContact);
 
 
 
@@ -61,5 +61,99 @@ const viewallbtn = document.getElementById('viewall');
 // Add an event listener to the button
 viewallbtn.addEventListener('click', goviewall);
 
+
+// Function to be called when the back button is clicked
+
+
+// Back button functionality
+document.getElementById('backBtn').addEventListener('click', () => {
+    window.location = '/index.html'; // Change this to your main page
+    });
+// function goback() {
+//     // alert("Button was clicked!");
+//     window.location = '/pages/index.html';
+// }
+
+// // Select the button using its ID
+// const backBtnElem = document.getElementById('backBtn');
+
+// // Add an event listener to the button
+// backBtnElem.addEventListener('click', goback);
+
+
+
+
+
+
+
+// // Function to display all contacts
+
+
+// Call the function to display contacts when the page loads
+window.onload = displayContacts;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// function displayContacts() {
+//     const contactList = document.getElementById("contactlist");
+//     contactList.innerHTML = "";
+//     for (let i = 0; i < contacts.length; i++) {
+//         const contact = contacts[i];
+//         const li = document.createElement("li");
+//         li.innerHTML = `
+//             <p>Name: ${contact.fullName}</p>
+//             <p>Phone: ${contact.phone}</p>  
+//             <p>Email: ${contact.email}</p>
+//         `;
+//         contactList.appendChild(li);
+//     }
+// }
+// // displayContacts();
+// window.onload = displayContacts;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// function displayContacts() {
+//     const contactsList = document.getElementById("contactlist");
+//     contactsList.innerHTML = "";
+//     for (let i = 0; i < contacts.length; i++) {
+//         const contact = contacts[i];
+//         const li = document.createElement("li");
+//         li.innerHTML = `
+//             <p>Name: ${contact.fullName}</p>
+//             <p>Phone: ${contact.phone}</p>  
+//             <p>Email: ${contact.email}</p>
+//         `;
+//         contactsList.appendChild(li);
+//     }
+// }
+// displayContacts();
 
 

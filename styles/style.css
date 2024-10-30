@@ -65,3 +65,24 @@ justify-content: center;
 body {
   background-color: rgb(127, 157, 255);
 }
+
+
+  /* media query */
+@media screen and (max-width: 720px) {
+
+  /* slpash page media query */
+
+#splashlogo {
+  
+  margin: 220px 0px 0px 30px;
+  }
+
+
+  /* index page media query */
+
+  #buttons {
+   margin-top: 100px;
+  }
+  
+}
+  
