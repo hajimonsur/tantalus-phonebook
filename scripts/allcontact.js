@@ -14,7 +14,9 @@ function displayContact() {
             li.innerHTML = ` <p> <b> Name:</b> ${retrieve[i].fullName}</p> 
             <p> <b> Phone:</b> ${retrieve[i].phone}</p> 
             <p> <b> Email:</b> ${retrieve[i].email}</p>
-             <button id="singlebtn">View Contact</button>
+            
+             <button class="viewbtn" data-index="${i}">View Contact</button>
+               
             <button>Edit</button>
             <hr>`;
          
@@ -31,17 +33,24 @@ document.addEventListener("DOMContentLoaded", displayContact());
 
 
 
-// Function to be called when the single button is clicked
-function gosinglebtn() {
-    // alert("Button was clicked!");
-    window.location = '/pages/singlepage.html';
+
+
+
+// Function to handle viewing a contact
+function viewContact(event) {
+    const index = event.target.getAttribute('data-index');
+    localStorage.setItem('selectedContactIndex', index); // Save the selected contact index
+    window.location = '/pages/singlepage.html'; // Navigate to the single contact page
 }
 
-// Select the button using its ID
-const singlebtn = document.getElementById('singlebtn');
+// Add event listeners to each "View Contact" button after DOM content is loaded
+document.addEventListener("DOMContentLoaded", () => {
+    const viewButtons = document.querySelectorAll('.viewbtn');
+    viewButtons.forEach(button => {
+        button.addEventListener('click', viewContact);
+    });
+});
 
-// Add an event listener to the button
-singlebtn.addEventListener('click', gosinglebtn);
 
 
 
