@@ -1,96 +1,41 @@
-let contacts = [];
-
-// Load contacts from local storage on page load
-function loadContacts() {
-    const storedContacts = JSON.parse(localStorage.getItem('contacts'));
-    if (storedContacts) {
-        contacts = storedContacts;
+document.addEventListener("DOMContentLoaded", () => {
+    const contactIndex = new URLSearchParams(window.location.search).get('index');
+    const contacts = JSON.parse(localStorage.getItem('contact')) || [];
+    
+    if (contactIndex === null || !contacts[contactIndex]) {
+        alert("Contact not found.");
+        window.location.href = "/pages/allcontact.html";
+        return;
     }
-    displayContacts();
-}
 
-// Display contacts
-function displayContacts() {
-    const list = document.getElementById('contact-list');
-    list.innerHTML = '';
-    contacts.forEach(contact => {
-        const li = document.createElement('li');
-        li.innerHTML = `
-            ${contact.name} - ${contact.phone} - ${contact.email}
-            <button onclick="editContact(${contact.id})">Edit</button>
-            <button onclick="deleteContact(${contact.id})">Delete</button>
-        `;
-        list.appendChild(li);
+    // Load the contact data into the form fields
+    const contact = contacts[contactIndex];
+    document.getElementById("name").value = contact.fullName;
+    document.getElementById("phone").value = contact.phone;
+    document.getElementById("email").value = contact.email;
+
+    // Update contact in local storage
+    document.getElementById("contactForm").addEventListener("submit", (e) => {
+        e.preventDefault();
+        
+        contacts[contactIndex] = {
+            fullName: document.getElementById("name").value,
+            phone: document.getElementById("phone").value,
+            email: document.getElementById("email").value,
+        };
+        
+        localStorage.setItem('contact', JSON.stringify(contacts));
+        alert("Contact updated successfully!");
+        window.location.href = "/pages/allcontact.html";
     });
-}
 
-// Handle the contact form submission
-document.getElementById('contact-form').addEventListener('submit', function (e) {
-    e.preventDefault();
-    const name = document.getElementById('name').value;
-    const phone = document.getElementById('phone').value;
-    const email = document.getElementById('email').value;
-
-    // Check if we're updating an existing contact
-    const editingId = this.dataset.editingId;
-    if (editingId) {
-        updateContact(editingId, name, phone, email);
-        delete this.dataset.editingId; // Clear the editing state
-    } else {
-        addContact(name, phone, email);
-    }
-
-    clearForm();
+    // Delete contact from local storage
+    document.getElementById("deleteBtn").addEventListener("click", () => {
+        if (confirm("Are you sure you want to delete this contact?")) {
+            contacts.splice(contactIndex, 1);
+            localStorage.setItem('contact', JSON.stringify(contacts));
+            alert("Contact deleted successfully!");
+            window.location.href = "/pages/allcontact.html";
+        }
+    });
 });
-
-// Function to add a new contact
-function addContact(name, phone, email) {
-    const contact = { id: Date.now(), name, phone, email };
-    contacts.push(contact);
-    saveToLocalStorage();
-    displayContacts();
-}
-
-// Function to edit a contact
-function editContact(id) {
-    const contact = contacts.find(c => c.id === id);
-    document.getElementById('name').value = contact.name;
-    document.getElementById('phone').value = contact.phone;
-    document.getElementById('email').value = contact.email;
-
-    // Set the form to editing mode
-    document.getElementById('contact-form').dataset.editingId = id;
-}
-
-// Function to update a contact
-function updateContact(id, name, phone, email) {
-    const contact = contacts.find(c => c.id == id);
-    contact.name = name;
-    contact.phone = phone;
-    contact.email = email;
-    saveToLocalStorage();
-    displayContacts();
-}
-
-// Function to delete a contact
-function deleteContact(id) {
-    contacts = contacts.filter(contact => contact.id !== id);
-    saveToLocalStorage();
-    displayContacts();
-}
-
-// Save contacts to local storage
-function saveToLocalStorage() {
-    localStorage.setItem('contacts', JSON.stringify(contacts));
-}
-
-// Clear input fields
-function clearForm() {
-    document.getElementById('name').value = '';
-    document.getElementById('phone').value = '';
-    document.getElementById('email').value = '';
-    document.getElementById('contact-form').dataset.editingId = ''; // Clear editing ID
-}
-
-// Call loadContacts on page load
-loadContacts();
