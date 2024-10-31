@@ -1,4 +1,4 @@
-
+// starts here
 
 // funtion to display all contacts inside the local storage in allcontact.html
 
@@ -52,7 +52,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
-
+// ends here
 
 
 
