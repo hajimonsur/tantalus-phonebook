@@ -1,3 +1,4 @@
+
 document.addEventListener("DOMContentLoaded", () => {
     const contactsListElem = document.getElementById("contactsList");
     const contacts = JSON.parse(localStorage.getItem('contact')) || [];
@@ -69,6 +70,32 @@ backbtn.addEventListener("click", function () {
 
 
 
+
+    
+    for (let i = 0; i < retrieve.length; i++) {
+        if (retrieve[i].fullName.toLowerCase().includes(value.toLowerCase())) {
+
+            const li = document.createElement("li");
+            li.innerHTML = ` <p> <b> Name:</b> ${retrieve[i].fullName}</p> 
+            <p> <b> Phone:</b> ${retrieve[i].phone}</p> 
+            <p> <b> Email:</b> ${retrieve[i].email}</p>
+
+             <button id="singlebtn">View Contact</button>
+            <button>Edit</button>
+            <hr>`;
+            contactsListElem.appendChild(li);
+        }
+        
+        
+
+        
+        
+    }
+
+
+         
+
+
 document.addEventListener("DOMContentLoaded", () => {
     const contactsListElem = document.getElementById("contactsList");
     const contacts = JSON.parse(localStorage.getItem('contact')) || [];
@@ -113,5 +140,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     displayContacts(); // Call the function to display contacts
 });
+
 
 
