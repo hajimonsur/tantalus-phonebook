@@ -8,7 +8,12 @@ const  contactElem = document.getElementById("contactForm")
 // create local storage
 
 
+
 const contacts = JSON.parse(localStorage.getItem("contact")) || [];
+// clear local storage
+
+localStorage.clear();
+
 
 function createContact(e) {
 
