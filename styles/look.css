@@ -56,9 +56,38 @@ ul {
     text-align: center;
 }
 
+#backbtn {
+    padding: 10px;
+    background: #3a0b4d;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 20px;
+    margin-right: 10px;
+    display: flex;
+    justify-content: left;
+
+}
+    
+
+
 
 /* media query */
 
 .container {
     margin-top: 90px;
+}
+
+#searchbar {
+    height: 20px;
+    width : 300px;
+    border-radius: 20px;
+    border: 1px solid #3a0b4d;
+    
+    
+}
+#searchicon {
+    font-size: 20px;
+    color: white;
+    margin-left: 20px;
 }

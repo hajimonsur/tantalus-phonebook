@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>All Contacts</title>
@@ -9,7 +10,10 @@
 <body>
     
    <!-- <div id="heading"> -->
-    <h1 id="heading" >All Contacts</h1>
+    <h1 id="heading" ><button  id="backbtn"><i class="fa-solid fa-left-long"></i> </button>All Contacts</h1>
+    <!-- create a search bar -->
+     
+    <input type="text" id="searchbar" placeholder="Search"><i class="fa-solid fa-magnifying-glass" id ="searchicon"></i>
    <!-- </div> -->
    <ol id="contactsList"></ol>
 
@@ -18,7 +22,7 @@
  
    
   
-   
+   <script src="/scripts/search.js"></script>
 
     <script src="../scripts/allcontact.js"></script>
 </body>
