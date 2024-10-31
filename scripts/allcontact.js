@@ -1,3 +1,4 @@
+
 document.addEventListener("DOMContentLoaded", () => {
     const contactsListElem = document.getElementById("contactsList");
     const contacts = JSON.parse(localStorage.getItem('contact')) || [];
@@ -75,10 +76,12 @@ searchbarElem.addEventListener("input", function () {
     
     for (let i = 0; i < retrieve.length; i++) {
         if (retrieve[i].fullName.toLowerCase().includes(value.toLowerCase())) {
+
             const li = document.createElement("li");
             li.innerHTML = ` <p> <b> Name:</b> ${retrieve[i].fullName}</p> 
             <p> <b> Phone:</b> ${retrieve[i].phone}</p> 
             <p> <b> Email:</b> ${retrieve[i].email}</p>
+
              <button id="singlebtn">View Contact</button>
             <button>Edit</button>
             <hr>`;
@@ -92,71 +95,7 @@ searchbarElem.addEventListener("input", function () {
     }
 
 });
-
-// // funtion to display all contacts inside the local storage in allcontact.html
-
-
-// const retrieve = JSON.parse(localStorage.getItem('contact'));
-// function displayContact() {
-
-//     if (retrieve != null) {
-//         for (let i = 0; i < retrieve.length; i++) {
-            
-//             const contactsListElem = document.getElementById("contactsList");
-           
-//             const li = document.createElement("li");
-//             li.innerHTML = ` <p> <b> Name:</b> ${retrieve[i].fullName}</p> 
-//             <p> <b> Phone:</b> ${retrieve[i].phone}</p> 
-//             <p> <b> Email:</b> ${retrieve[i].email}</p>
-//              <button class="singlebtn">View Contact</button>
-//             <button class="editBtn">Edit</button>
-//             <hr>`;
          
-            
-//             contactsListElem.appendChild(li);
-         
-//         }
-       
-//     }
-    
-// }
-
-// document.addEventListener("DOMContentLoaded", displayContact());
-
-
-
-// // Function to be called when the single button is clicked
-// function goeditbtn() {
-//     // alert("Button was clicked!");
-//     window.location = '/pages/edit.html';
-// }
-
-// // Select the button using its class name
-
-// const editbtn = document.getElementsByClassName('editBtn');
-
-// // Add an event listener to the buttons
-
-// for (let i = 0; i < editbtn.length; i++) {
-//     editbtn[i].addEventListener('click', goeditbtn);
-// };
-// // edit contact button function
-
-// function editContact(index) {
-//     // Get the index of the clicked contact
-//     const contactIndex = index;
-
-//     // Get the contact data from local storage
-//     const contacts = JSON.parse(localStorage.getItem('contact'));
-
-//     // Open the edit.html page with the contact data
-//     window.location = `/pages/edit.html?index=${contactIndex}`;
-// }
-// editContact(index);
-
-// // Select the button using its class name
-
-// const singlebtn = document.getElementsByClassName('singlebtn');
 
 document.addEventListener("DOMContentLoaded", () => {
     const contactsListElem = document.getElementById("contactsList");
@@ -202,5 +141,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     displayContacts(); // Call the function to display contacts
 });
+
 
 
