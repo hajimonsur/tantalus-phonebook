@@ -8,19 +8,31 @@
 </head>
 <body>
     <h1>Edit Contact</h1>
+   <div class="container">
     <form id="contactForm">
-        <label for="name">Name:</label>
+       <div class="formflex"> 
+        <label for="name" class="labeltitle">Name:</label>
         <input type="text" id="name" required>
-        
+    </div>
+
+    <div class="formflex"> 
         <label for="phone">Phone:</label>
         <input type="text" id="phone" required>
+    </div>
         
+    <div class="formflex"> 
         <label for="email">Email:</label>
         <input type="email" id="email" required>
+    </div>
+        
+      
+        
+        
         
         <button type="submit">Save Changes</button>
         <button type="button" id="deleteBtn">Delete Contact</button>
     </form>
+   </div>
 
     <script src="/scripts/edit.js"></script>
 </body>
