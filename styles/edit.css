@@ -9,13 +9,14 @@ h1{
 }
 
 .container {
-    max-width: 260px;
+    max-width: 400px;
     color: #38005A;
     margin: auto;
     background: linear-gradient(to right,#70CBEF,#98B3FA);
-    padding: 20px;
+    padding: 27px;
     border-radius: 16px;
     box-shadow: 0 0 10px rgba(5, 81, 108, 0.1);
+    width: 300px;
 }
 
 form {
@@ -25,8 +26,12 @@ form {
 
 
 input {
-    margin: 10px 0;
+    margin: 20px 0;
     padding: 10px;
+    width: 300px;
+    margin: auto;
+  
+
 }
 
 button {
@@ -36,7 +41,10 @@ button {
     border: none;
     cursor: pointer;
     border-radius: 20px;
-    margin-top: 10px;
+   
+    width: 200px;
+    margin: auto;
+    margin-top: 30px;
 
 
 }
@@ -56,42 +64,26 @@ ul {
     text-align: center;
 }
 
-
-#backbtn {
-    padding: 10px;
-    background: #3a0b4d;
-    color: white;
-    border: none;
-    cursor: pointer;
-    border-radius: 20px;
-    margin-right: 10px;
+.formflex {
     display: flex;
-    justify-content: left;
-
+    flex-direction: row;
+    margin-top: 10px;
 }
-    
 
-
+label {
+    padding-top: 10px;
+    margin-right: 10px;
+}
 
 
 /* media query */
 
-.container {
-    margin-top: 90px;
+@media only screen and (max-width: 700px) {
 
-}
-
-#searchbar {
-    height: 20px;
-    width : 300px;
-    border-radius: 20px;
-    border: 1px solid #3a0b4d;
-    
+    .container {
+        margin-top: 90px;
+        width: 300px;
+    }
     
 }
-#searchicon {
-    font-size: 20px;
-    color: white;
-    margin-left: 20px;
 
-}
