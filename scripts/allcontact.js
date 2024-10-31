@@ -69,6 +69,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const contacts = JSON.parse(localStorage.getItem('contact')) || [];
 
     function displayContacts() {
+        
+        //sort contacts by name
+        contacts.sort((a, b) => a.fullName.localeCompare(b.fullName));
         contactsListElem.innerHTML = ''; // Clear existing contacts
 
         contacts.forEach((contact, index) => {
