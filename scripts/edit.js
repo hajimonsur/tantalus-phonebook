@@ -1,7 +1,8 @@
 document.addEventListener("DOMContentLoaded", () => {
     const contactIndex = new URLSearchParams(window.location.search).get('index');
     const contacts = JSON.parse(localStorage.getItem('contact')) || [];
-    
+
+    // Validate the index and load contact data
     if (contactIndex === null || !contacts[contactIndex]) {
         alert("Contact not found.");
         window.location.href = "/pages/allcontact.html";
@@ -14,16 +15,18 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("phone").value = contact.phone;
     document.getElementById("email").value = contact.email;
 
-    // Update contact in local storage
+    // Update contact in local storage on form submission
     document.getElementById("contactForm").addEventListener("submit", (e) => {
         e.preventDefault();
-        
+
+        // Update the contact information
         contacts[contactIndex] = {
             fullName: document.getElementById("name").value,
             phone: document.getElementById("phone").value,
             email: document.getElementById("email").value,
         };
         
+        // Save the updated contacts array to localStorage
         localStorage.setItem('contact', JSON.stringify(contacts));
         alert("Contact updated successfully!");
         window.location.href = "/pages/allcontact.html";

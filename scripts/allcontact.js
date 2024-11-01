@@ -4,6 +4,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const searchInput = document.getElementById("searchInput");
 
     function displayContacts(filteredContacts) {
+        // sort contacts by name
+        filteredContacts.sort((a, b) => a.fullName.localeCompare(b.fullName));
         contactsListElem.innerHTML = ''; // Clear existing contacts
 
         filteredContacts.forEach((contact, index) => {
@@ -56,40 +58,45 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
+// // funtion to display all contacts inside the local storage in allcontact.html
+// let searchbarElem = document.getElementById("searchbar");
+// let backbtn = document.getElementById("backbtn");
 
-// funtion to display all contacts inside the local storage in allcontact.html
-let searchbarElem = document.getElementById("searchbar");
-let backbtn = document.getElementById("backbtn");
+// backbtn.addEventListener("click", function () {
+//     window.location = "/pages/index.html";
+// });
 
-backbtn.addEventListener("click", function () {
-    window.location = "/pages/index.html";
-});
-
-searchbarElem.addEventListener("input", function () {
-    let value = searchbarElem.value;
-    let contactsListElem = document.getElementById("contactsList");
-    contactsListElem.innerHTML = "";
+// searchbarElem.addEventListener("input", function () {
+//     let value = searchbarElem.value;
+//     let contactsListElem = document.getElementById("contactsList");
+//     contactsListElem.innerHTML = "";
 
     
-    for (let i = 0; i < retrieve.length; i++) {
-        if (retrieve[i].fullName.toLowerCase().includes(value.toLowerCase())) {
-            const li = document.createElement("li");
-            li.innerHTML = ` <p> <b> Name:</b> ${retrieve[i].fullName}</p> 
-            <p> <b> Phone:</b> ${retrieve[i].phone}</p> 
-            <p> <b> Email:</b> ${retrieve[i].email}</p>
-             <button id="singlebtn">View Contact</button>
-            <button>Edit</button>
-            <hr>`;
-            contactsListElem.appendChild(li);
-        }
+//     for (let i = 0; i < retrieve.length; i++) {
+//         if (retrieve[i].fullName.toLowerCase().includes(value.toLowerCase())) {
+//             const li = document.createElement("li");
+//             li.innerHTML = ` <p> <b> Name:</b> ${retrieve[i].fullName}</p> 
+//             <p> <b> Phone:</b> ${retrieve[i].phone}</p> 
+//             <p> <b> Email:</b> ${retrieve[i].email}</p>
+//              <button id="singlebtn">View Contact</button>
+//             <button>Edit</button>
+//             <hr>`;
+//             contactsListElem.appendChild(li);
+//         }
         
         
 
         
         
-    }
+//     }
 
-});
+// });
+
+
+
+
+
+
 
 // // funtion to display all contacts inside the local storage in allcontact.html
 
@@ -161,9 +168,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const contacts = JSON.parse(localStorage.getItem('contact')) || [];
 
     function displayContacts() {
-        
-        //sort contacts by name
-        contacts.sort((a, b) => a.fullName.localeCompare(b.fullName));
         contactsListElem.innerHTML = ''; // Clear existing contacts
 
         contacts.forEach((contact, index) => {
@@ -179,15 +183,6 @@ document.addEventListener("DOMContentLoaded", () => {
             contactsListElem.appendChild(li);
         });
 
-        // Add event listeners for view buttons
-        document.querySelectorAll('.viewBtn').forEach(button => {
-            button.addEventListener('click', (e) => {
-                const index = e.target.getAttribute("data-index");
-                // Redirect to view page with contact index
-                window.location.href = `/pages/view.html?index=${index}`;
-            });
-        });
-
         // Add event listeners for edit buttons
         document.querySelectorAll('.editBtn').forEach(button => {
             button.addEventListener('click', (e) => {
@@ -196,7 +191,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 window.location.href = `/pages/edit.html?index=${index}`;
             });
         });
+        
     }
 
-    displayContacts(); // Call the function to display contacts
+    displayContacts();
 });
+
