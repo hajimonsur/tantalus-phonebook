@@ -32,7 +32,11 @@ document.addEventListener("DOMContentLoaded", () => {
         document.querySelectorAll('.viewBtn').forEach(button => {
             button.addEventListener('click', (e) => {
                 const id = e.target.getAttribute("data-id");
-                window.location.href = `/pages/view.html?id=${id}`;
+                //find contact by id
+                const singleContact = contacts[id];
+                //store the contact in local storage
+                localStorage.setItem('singleContact', JSON.stringify(singleContact));
+                window.location.href = `/pages/singlepage.html?id=${id}`;
             });
         });
 
