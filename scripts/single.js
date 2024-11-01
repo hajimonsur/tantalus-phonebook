@@ -1,61 +1,51 @@
 
 document.addEventListener("DOMContentLoaded", function () {
-    const selectedContactIndex = localStorage.getItem('selectedContactIndex');
-    const contacts = JSON.parse(localStorage.getItem('contact'));
+    const singlePhoneContact = JSON.parse(localStorage.getItem('singleContact'));
+    console.log("singlePhoneContact", singlePhoneContact);
 
-    if (selectedContactIndex !== null && contacts) {
-        const contact = contacts[selectedContactIndex];
+    const selectedContactIndex = new URLSearchParams(window.location.search).get('index');
 
-        // Display contact details on the page and buttons
-        const contactDetailsElem = document.getElementById("contactDetails");
-        contactDetailsElem.innerHTML = `
-            <h2>Contact Details</h2>
-            <p><b>Name:</b> ${contact.fullName}</p>
-            <p><b>Phone:</b> ${contact.phone}</p>
-            <p><b>Email:</b> ${contact.email}</p>
-            <button class="btn" id="editContact">Edit</button>
-            <button class="btn" id="deleteContact">Delete</button>
-        `;
-    }
+    // function to Display contact details in  singlepage.html
+    const contactDetailsElem = document.getElementById("contactDetails");
+    contactDetailsElem.innerHTML = `
+        <h2>Contact Details</h2>
+        <p><b>Name:</b> ${singlePhoneContact.fullName}</p>
+        <p><b>Phone:</b> ${singlePhoneContact.phone}</p>
+        <p><b>Email:</b> ${singlePhoneContact.email}</p>
+        <button class="btn" id="editContact">Edit</button>
+      <button class="btn" id="deleteContact">Delete</button>
+    `;
+
+
+    document.getElementById("editContact").addEventListener("click", function () {
+        window.location.href = `/pages/edit.html?index=${selectedContactIndex}`;
+    });
+
+    
+
+
+    document.getElementById("deleteContact").addEventListener("click", function () {
+        if (confirm("Are you sure you want to delete this contact?")) {
+            contacts.splice(selectedContactIndex, 1);
+            localStorage.setItem('contact', JSON.stringify(contacts));
+            window.location.href = "/pages/allcontact.html";
+        }
+    });
 });
 
-// document.addEventListener("DOMContentLoaded", function () {
-//     const selectedContactIndex = localStorage.getItem('selectedContactIndex');
-//     const contacts = JSON.parse(localStorage.getItem('contact'));
 
-//     if (selectedContactIndex !== null && contacts) {
-//         const contact = contacts[selectedContactIndex];
 
-//         // Display contact details and add buttons to the page with 'btn' class
-//         const contactDetailsElem = document.getElementById("contactDetails");
-//         contactDetailsElem.innerHTML = `
-//             <h2>Contact Details</h2>
-//             <p><b>Name:</b> ${contact.fullName}</p>
-//             <p><b>Phone:</b> ${contact.phone}</p>
-//             <p><b>Email:</b> ${contact.email}</p>
-//             <button class="btn" id="editContact">Edit</button>
-//             <button class="btn" id="deleteContact">Delete</button>
-//         `;
-//     }
-// });
 
-// // script.js
-// document.addEventListener("DOMContentLoaded", function() {
-//     const buttonContainer = document.getElementById("buttonContainer");
 
-//     // Create the Edit button
-//     const editButton = document.createElement("button");
-//     editButton.className = "btn";
-//     editButton.id = "editButton";
-//     editButton.textContent = "Edit";
+// handle singlepage back button 
+let backbtn = document.getElementById("backbtn");
 
-//     // Create the Delete button
-//     const deleteButton = document.createElement("button");
-//     deleteButton.className = "btn";
-//     deleteButton.id = "deleteButton";
-//     deleteButton.textContent = "Delete";
+// go back button
 
-//     // Append buttons to the container
-//     buttonContainer.appendChild(editButton);
-//     buttonContainer.appendChild(deleteButton);
-// });
+backbtn.addEventListener("click", function () {
+    window.location = "/pages/allcontact.html";
+});
+
+
+
+

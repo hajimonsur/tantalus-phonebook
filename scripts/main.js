@@ -28,5 +28,15 @@ const viewbtn = document.getElementById('allbtn');
 viewbtn.addEventListener('click', goviewbtn);
 
 
+// handle index back button
+let backbtn = document.getElementById("backbtn");
+
+// go back button
+
+backbtn.addEventListener("click", function () {
+    window.location = "/pages/splash.html";
+});
+
+
 
 

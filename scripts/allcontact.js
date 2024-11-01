@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
         document.querySelectorAll('.viewBtn').forEach(button => {
             button.addEventListener('click', (e) => {
                 const index = e.target.getAttribute("data-index");
-                window.location.href = `/pages/view.html?index=${index}`;
+                window.location.href = `/pages/singlepage.html?index=${index}`;
             });
         });
 
@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         });
     }
-
+//handle search
     function handleSearch() {
         const query = searchInput.value.toLowerCase();
         const filteredContacts = contacts.filter(contact =>
@@ -48,52 +48,12 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // Initial display of all contacts
-    displayContacts(contacts);
+    // displayContacts(contacts);
 
     // Event listener for search input
     searchInput.addEventListener("input", handleSearch);
 });
 
-
-
-
-
-// funtion to display all contacts inside the local storage in allcontact.html
-let searchbarElem = document.getElementById("searchbar");
-let backbtn = document.getElementById("backbtn");
-
-//go back button
-
-backbtn.addEventListener("click", function () {
-    window.location = "/pages/index.html";
-});
-
-
-
-
-    
-    for (let i = 0; i < retrieve.length; i++) {
-        if (retrieve[i].fullName.toLowerCase().includes(value.toLowerCase())) {
-
-            const li = document.createElement("li");
-            li.innerHTML = ` <p> <b> Name:</b> ${retrieve[i].fullName}</p> 
-            <p> <b> Phone:</b> ${retrieve[i].phone}</p> 
-            <p> <b> Email:</b> ${retrieve[i].email}</p>
-
-             <button id="singlebtn">View Contact</button>
-            <button>Edit</button>
-            <hr>`;
-            contactsListElem.appendChild(li);
-        }
-        
-        
-
-        
-        
-    }
-
-
-         
 
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -123,8 +83,13 @@ document.addEventListener("DOMContentLoaded", () => {
         document.querySelectorAll('.viewBtn').forEach(button => {
             button.addEventListener('click', (e) => {
                 const index = e.target.getAttribute("data-index");
+
+                // find contact by index
+                const singleContact = contacts[index];
+                // store contact in local storage
+                localStorage.setItem('singleContact', JSON.stringify(singleContact));
                 // Redirect to view page with contact index
-                window.location.href = `/pages/view.html?index=${index}`;
+                window.location.href = `/pages/singlepage.html?index=${index}`;
             });
         });
 
@@ -132,14 +97,36 @@ document.addEventListener("DOMContentLoaded", () => {
         document.querySelectorAll('.editBtn').forEach(button => {
             button.addEventListener('click', (e) => {
                 const index = e.target.getAttribute("data-index");
+                // //edit contact
+                const contact = contacts[index];
+                // // store contact in local storage
+                localStorage.setItem('Contact', JSON.stringify(contact));
+
                 // Redirect to edit page with contact index
                 window.location.href = `/pages/edit.html?index=${index}`;
             });
         });
+              const query = searchInput.value.toLowerCase();
+   
     }
 
     displayContacts(); // Call the function to display contacts
 });
 
 
+
+
+//  handle all contact back button
+let backbtn = document.getElementById("backbtn");
+
+// go back button
+
+backbtn.addEventListener("click", function () {
+    window.location = "/pages/index.html";
+});
+
+
+
+
+   
 

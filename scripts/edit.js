@@ -1,6 +1,9 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const contactIndex = new URLSearchParams(window.location.search).get('index');
-    const contacts = JSON.parse(localStorage.getItem('contact')) || [];
+    
+     const contacts = JSON.parse(localStorage.getItem('contact')) || [];
+    console.log("contacts", contacts);
+    
+        const contactIndex = new URLSearchParams(window.location.search).get('index');
     
     if (contactIndex === null || !contacts[contactIndex]) {
         alert("Contact not found.");

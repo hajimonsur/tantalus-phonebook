@@ -6,13 +6,10 @@ const  contactElem = document.getElementById("contactForm")
 
 
 // create local storage
-
-
-
 const contacts = JSON.parse(localStorage.getItem("contact")) || [];
-// clear local storage
 
-localStorage.clear();
+
+
 
 
 function createContact(e) {
@@ -67,6 +64,17 @@ const viewallbtn = document.getElementById('viewall');
 
 // Add an event listener to the button
 viewallbtn.addEventListener('click', goviewall);
+
+
+// handle create back btn 
+
+let backbtn = document.getElementById("backbtn");
+
+// go back button
+
+backbtn.addEventListener("click", function () {
+    window.location = "/pages/index.html";
+});
 
 
 
