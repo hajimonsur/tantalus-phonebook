@@ -1,21 +1,28 @@
 document.addEventListener("DOMContentLoaded", () => {
     const contactsListElem = document.getElementById("contactsList");
-    const contacts = JSON.parse(localStorage.getItem('contact')) || [];
+    let contacts = JSON.parse(localStorage.getItem('contact')) || [];
     const searchInput = document.getElementById("searchInput");
 
+    // Ensure each contact has a unique ID
+    contacts = contacts.map(contact => {
+        if (!contact.id) contact.id = Date.now() + Math.random(); // Generate a unique ID if missing
+        return contact;
+    });
+    localStorage.setItem('contact', JSON.stringify(contacts)); // Save updated contacts with IDs back to localStorage
+
     function displayContacts(filteredContacts) {
-        // sort contacts by name
+        // Sort contacts by name
         filteredContacts.sort((a, b) => a.fullName.localeCompare(b.fullName));
         contactsListElem.innerHTML = ''; // Clear existing contacts
 
-        filteredContacts.forEach((contact, index) => {
+        filteredContacts.forEach((contact) => {
             const li = document.createElement("li");
             li.innerHTML = `
                 <p><b>Name:</b> ${contact.fullName}</p>
                 <p><b>Phone:</b> ${contact.phone}</p>
                 <p><b>Email:</b> ${contact.email}</p>
-                <button class="viewBtn" data-index="${index}">View Contact</button>
-                <button class="editBtn" data-index="${index}">Edit</button>
+                <button class="viewBtn" data-id="${contact.id}">View Contact</button>
+                <button class="editBtn" data-id="${contact.id}">Edit</button>
                 <hr>
             `;
             contactsListElem.appendChild(li);
@@ -24,16 +31,16 @@ document.addEventListener("DOMContentLoaded", () => {
         // Add event listeners for view buttons
         document.querySelectorAll('.viewBtn').forEach(button => {
             button.addEventListener('click', (e) => {
-                const index = e.target.getAttribute("data-index");
-                window.location.href = `/pages/view.html?index=${index}`;
+                const id = e.target.getAttribute("data-id");
+                window.location.href = `/pages/view.html?id=${id}`;
             });
         });
 
         // Add event listeners for edit buttons
         document.querySelectorAll('.editBtn').forEach(button => {
             button.addEventListener('click', (e) => {
-                const index = e.target.getAttribute("data-index");
-                window.location.href = `/pages/edit.html?index=${index}`;
+                const id = e.target.getAttribute("data-id");
+                window.location.href = `/pages/edit.html?id=${id}`;
             });
         });
     }
@@ -163,37 +170,47 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // const singlebtn = document.getElementsByClassName('singlebtn');
 
-document.addEventListener("DOMContentLoaded", () => {
-    const contactsListElem = document.getElementById("contactsList");
-    const contacts = JSON.parse(localStorage.getItem('contact')) || [];
 
-    function displayContacts() {
-        contactsListElem.innerHTML = ''; // Clear existing contacts
 
-        contacts.forEach((contact, index) => {
-            const li = document.createElement("li");
-            li.innerHTML = `
-                <p><b>Name:</b> ${contact.fullName}</p>
-                <p><b>Phone:</b> ${contact.phone}</p>
-                <p><b>Email:</b> ${contact.email}</p>
-                <button class="viewBtn" data-index="${index}">View Contact</button>
-                <button class="editBtn" data-index="${index}">Edit</button>
-                <hr>
-            `;
-            contactsListElem.appendChild(li);
-        });
 
-        // Add event listeners for edit buttons
-        document.querySelectorAll('.editBtn').forEach(button => {
-            button.addEventListener('click', (e) => {
-                const index = e.target.getAttribute("data-index");
-                // Redirect to edit page with contact index
-                window.location.href = `/pages/edit.html?index=${index}`;
-            });
-        });
+
+
+
+
+
+// document.addEventListener("DOMContentLoaded", () => {
+//     const contactsListElem = document.getElementById("contactsList");
+//     const contacts = JSON.parse(localStorage.getItem('contact')) || [];
+
+//     function displayContacts() {
+//         contactsListElem.innerHTML = ''; // Clear existing contacts
+
+//         contacts.forEach((contact, index) => {
+//             const li = document.createElement("li");
+//             li.innerHTML = `
+//                 <p><b>Name:</b> ${contact.fullName}</p>
+//                 <p><b>Phone:</b> ${contact.phone}</p>
+//                 <p><b>Email:</b> ${contact.email}</p>
+//                 <button class="viewBtn" data-index="${index}">View Contact</button>
+//                 <button class="editBtn" data-index="${index}">Edit</button>
+//                 <hr>
+//             `;
+//             contactsListElem.appendChild(li);
+//         });
+
+//         // Add event listeners for edit buttons
+//         document.querySelectorAll('.editBtn').forEach(button => {
+//             button.addEventListener('click', (e) => {
+//                 const index = e.target.getAttribute("data-index");
+//                 // Redirect to edit page with contact index
+//                 window.location.href = `/pages/edit.html?index=${index}`;
+//             });
+//         });
         
-    }
+//     }
 
-    displayContacts();
-});
+//     displayContacts();
+// });
+
+
 
